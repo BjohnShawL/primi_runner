@@ -10,10 +10,22 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: UnityBuildTask@3
+  inputs:
+    buildTarget: 'WebGL'
+    unityEditorsPathMode: 'specify'
+    customUnityEditorsPath: 'D:\Programs\2020.1.15f1\Editor'
+    unityProjectPath: 'D:\Game Projects\UnityProjects\Primitive runner'
+    outputPath: '$(Build.BinariesDirectory)'
+    outputFileName: 'drop'
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.BinariesDirectory)'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'

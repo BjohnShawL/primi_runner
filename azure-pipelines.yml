@@ -15,7 +15,6 @@ steps:
     buildTarget: 'WebGL'
     unityEditorsPathMode: 'specify'
     customUnityEditorsPath: '$(UnityEditorPath)'
-    unityProjectPath: 'D:\Game Projects\UnityProjects\Primitive runner'
     outputPath: '$(Build.BinariesDirectory)'
     outputFileName: 'drop'
 - task: CopyFiles@2

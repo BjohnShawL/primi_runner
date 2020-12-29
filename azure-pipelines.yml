@@ -14,7 +14,7 @@ steps:
   inputs:
     buildTarget: 'WebGL'
     unityEditorsPathMode: 'specify'
-    customUnityEditorsPath: 'D:\Programs\2020.1.15f1\Editor'
+    customUnityEditorsPath: 'D:\Programs'
     unityProjectPath: 'D:\Game Projects\UnityProjects\Primitive runner'
     outputPath: '$(Build.BinariesDirectory)'
     outputFileName: 'drop'

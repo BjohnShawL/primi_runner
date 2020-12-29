@@ -80,6 +80,7 @@ public class PlayerController : MonoBehaviour
             jumpForce *= .7f;
             PlayerJump();
             await Task.Run(()=> jumpForce = baseJump);
+            
             await Task.Delay(500);
             PlayerDeath?.Invoke(this);
         }

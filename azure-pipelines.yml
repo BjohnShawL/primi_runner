@@ -12,11 +12,12 @@ pool:
 steps:
 - task: UnityBuildTask@3
   inputs:
-    buildTarget: 'WebGL'
+    buildTarget: 'standalone'
     unityEditorsPathMode: 'specify'
     customUnityEditorsPath: '$(UnityEditorPath)'
     outputPath: '$(Build.BinariesDirectory)'
     outputFileName: 'drop'
+  
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(Build.BinariesDirectory)'

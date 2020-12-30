@@ -10,6 +10,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 20f;
 
+    private bool isInteracting = false;
+
+    [SerializeField] private float speedBoostMultiplier;
+    [SerializeField] private float SloMoMultiplier;
+
     [SerializeField] [Range(100,600)] private float deathDelay;
 
     [SerializeField] [Range(2,5)]private float fallMultiplier; 
@@ -27,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private BlockInteraction checker;
 
     public event Action<PlayerController> PlayerDeath;
+    public event Action<PlayerController, float> PlayerTP; 
     public event Action<Vector2> PlayerSpawn;
     
 
@@ -34,27 +40,59 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //blockActions = new List<Task>(){HandleBlockInteraction(new blockType()),HandleBouncer(new blockType()), HandleDamager(new blockType())};
+        
 
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         checker = GetComponent<BlockInteraction>();
-        //foreach (var blockAction in blockActions)
-        //{
-             //checker.BlockAction += blockAction;
-        //}
+
 
         checker.BlockAction += async (s) => await HandleBlockInteraction(s);
         checker.BlockAction += async (s) => await HandleBouncer(s);
         checker.BlockAction += async (s) => await HandleDamager(s);
         checker.BlockAction += async (s) => await HandlePhaser(s);
+        checker.BlockAction += async (s) => await HandleSpeedster(s);
+        checker.BlockAction += async (s) => await HandleSloMo(s);
 
-        //Debug.Log(checker);
+
+    }
+    void FixedUpdate()
+    {
+        isGrounded = Physics2D.OverlapCircle(GroundCheckTransform.position, CheckRadius, GroundLayerMask);
+        anim.SetBool("grounded", isGrounded);
+        anim.SetBool("jumping", !isGrounded);
+        var move = Input.GetAxisRaw("Horizontal");
+        PlayerMove(move);
+
     }
 
+    void Update()
+    {
+        if (isGrounded && Input.GetButtonDown("Jump"))
+        {
+
+            PlayerJump();
+
+
+        }
+        //  && Input.GetKeyDown(KeyCode.DownArrow) - this turns us manual
+        if (isGrounded && !isInteracting)
+        {
+
+            checker.CheckGroundType(GroundCheckTransform, GroundLayerMask);
+
+        }
+
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        anim.SetFloat("JumpingVel", rb.velocity.y);
+    }
     private async Task HandleBlockInteraction(blockType obj)
     {
-        Debug.Log("I'm still standing on " + obj.BlockType.ToString() + ", but this time from an event"); 
+        //Debug.Log("I'm still standing on " + obj.BlockType.ToString() + ", but this time from an event"); 
+        await Task.Yield();
     }
 
     private async Task HandleBouncer(blockType block)
@@ -68,7 +106,40 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            Task.Yield();
+            await Task.Yield();
+        }
+    }
+    private async Task HandleSpeedster(blockType block)
+    {
+        if (block.BlockType == blockType.type.Speedster)
+        {
+            isInteracting = !isInteracting;
+            var baseSpeed = moveSpeed;
+            moveSpeed *= speedBoostMultiplier;
+            await Task.Delay(1000);
+            moveSpeed = baseSpeed;
+            isInteracting = !isInteracting;
+
+        }
+        else
+        {
+            await Task.Yield();
+        }
+    }
+    private async Task HandleSloMo(blockType block)
+    {
+        if (block.BlockType == blockType.type.Slomo)
+        {
+            isInteracting = !isInteracting;
+            var baseSpeed = moveSpeed;
+            moveSpeed *= SloMoMultiplier;
+            await Task.Delay(1000);
+            moveSpeed = baseSpeed;
+            isInteracting = !isInteracting;
+        }
+        else
+        {
+            await Task.Yield();
         }
     }
 
@@ -88,62 +159,21 @@ public class PlayerController : MonoBehaviour
 
     private async Task HandlePhaser(blockType block)
     {
-        if (block.BlockType == blockType.type.Phaser)
+        if (block.BlockType == blockType.type.Phaser && Input.GetKeyDown(KeyCode.DownArrow))
         {
             var spawnPoint = block.pairedBlock.gameObject.transform.position;
             spawnPoint.y += 1;
             PlayerSpawn?.Invoke(spawnPoint);
-            PlayerDeath?.Invoke(this);
+            PlayerTP?.Invoke(this,600f);
         }
 
         else
         {
-            Task.Yield();
+           await Task.Yield();
         }
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        isGrounded = Physics2D.OverlapCircle(GroundCheckTransform.position, CheckRadius, GroundLayerMask);
-        anim.SetBool("grounded",isGrounded);
-        anim.SetBool("jumping",!isGrounded);
-        var move = Input.GetAxisRaw("Horizontal");
-        PlayerMove(move);
-        //
-        // if (isGrounded && Input.GetButtonDown("Jump"))
-        // {
-        //    //rb.AddForce(Vector2.up * jumpForce,ForceMode2D.Impulse);
-        //    rb.velocity = Vector2.up * jumpForce;
-        //    anim.SetBool("jumping",true);
-        //    
-        //
-        // }
-        // anim.SetFloat("JumpingVel", rb.velocity.y);
-    }
-
-    void Update()
-    {
-        if (isGrounded && Input.GetButtonDown("Jump"))
-        {
-            //rb.AddForce(Vector2.up * jumpForce,ForceMode2D.Impulse);
-            PlayerJump();
-            
-
-        }
-        if (isGrounded && Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            
-            checker.CheckGroundType(GroundCheckTransform, GroundLayerMask);
-            
-        }
-
-        if (rb.velocity.y<0)
-        {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier -1) * Time.deltaTime;
-        }
-        anim.SetFloat("JumpingVel", rb.velocity.y);
-    }
+   
 
     public void PlayerJump()
     {

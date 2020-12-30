@@ -259,9 +259,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  speedBoostMultiplier: 3
+  SloMoMultiplier: 0.5
+  deathDelay: 100
   fallMultiplier: 3.13
   shortJumpMultiplier: 0
   jumpForce: 30
+  isGrounded: 0
   GroundCheckTransform: {fileID: 281409244}
   CheckRadius: 1
   GroundLayerMask:

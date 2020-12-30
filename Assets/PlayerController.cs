@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 20f;
 
+    private bool isInteracting = false;
+
     [SerializeField] private float speedBoostMultiplier;
     [SerializeField] private float SloMoMultiplier;
 
@@ -74,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
         }
         //  && Input.GetKeyDown(KeyCode.DownArrow) - this turns us manual
-        if (isGrounded)
+        if (isGrounded && !isInteracting)
         {
 
             checker.CheckGroundType(GroundCheckTransform, GroundLayerMask);
@@ -111,10 +113,13 @@ public class PlayerController : MonoBehaviour
     {
         if (block.BlockType == blockType.type.Speedster)
         {
+            isInteracting = !isInteracting;
             var baseSpeed = moveSpeed;
             moveSpeed *= speedBoostMultiplier;
             await Task.Delay(1000);
             moveSpeed = baseSpeed;
+            isInteracting = !isInteracting;
+
         }
         else
         {
@@ -125,10 +130,12 @@ public class PlayerController : MonoBehaviour
     {
         if (block.BlockType == blockType.type.Slomo)
         {
+            isInteracting = !isInteracting;
             var baseSpeed = moveSpeed;
             moveSpeed *= SloMoMultiplier;
             await Task.Delay(1000);
             moveSpeed = baseSpeed;
+            isInteracting = !isInteracting;
         }
         else
         {

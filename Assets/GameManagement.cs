@@ -93,8 +93,11 @@ public class GameManagement : MonoBehaviour
 
     private void KillPlayer(PlayerController player)
     {
-        Destroy(player.gameObject);
-        SpawnPlayer();
+        if (player!=null)
+        {
+            Destroy(player.gameObject);
+            SpawnPlayer();
+        }
     }
 
     private async Task KillPlayer(PlayerController player, float timedelay)

@@ -117,7 +117,14 @@ public class GameManagement : MonoBehaviour
             player.PlayerDeath += KillPlayer;
             player.PlayerSpawn += SetPlayerSpawnPosition;
             player.PlayerTP += async (s,b) => await KillPlayer(s,b);
+            player.AddTime += AddTime;
+
         }
+    }
+
+    void AddTime(int timeToAdd)
+    {
+        gameTimeRemaining += timeToAdd;
     }
 
     void SpawnPlayer()

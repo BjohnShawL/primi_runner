@@ -5,7 +5,7 @@ using UnityEngine;
 public class blockType : MonoBehaviour
 {
     public blockType pairedBlock = null;
-    public float pointsValue = 0f;
+    public int pointsValue = 0;
     public enum type
     {
         Base,Bouncer,Damager,Phaser,Points,Slomo,Speedster

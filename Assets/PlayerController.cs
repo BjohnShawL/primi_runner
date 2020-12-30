@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     public event Action<PlayerController> PlayerDeath;
     public event Action<PlayerController, float> PlayerTP; 
     public event Action<Vector2> PlayerSpawn;
+    public event Action<int> AddTime; 
     
 
 
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
         checker.BlockAction += async (s) => await HandlePhaser(s);
         checker.BlockAction += async (s) => await HandleSpeedster(s);
         checker.BlockAction += async (s) => await HandleSloMo(s);
+        checker.BlockAction += async (s) => await HandlePoints(s);
 
 
     }
@@ -92,6 +94,18 @@ public class PlayerController : MonoBehaviour
     private async Task HandleBlockInteraction(blockType obj)
     {
         //Debug.Log("I'm still standing on " + obj.BlockType.ToString() + ", but this time from an event"); 
+        await Task.Yield();
+    }
+
+    private async Task HandlePoints(blockType block)
+    {
+        if (block.BlockType == blockType.type.Points)
+        {
+            var tta = block.pointsValue;
+            AddTime?.Invoke(tta);
+            block.pointsValue = 0;
+        }
+
         await Task.Yield();
     }
 

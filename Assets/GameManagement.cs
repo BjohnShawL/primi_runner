@@ -20,10 +20,18 @@ public class GameManagement : MonoBehaviour
     public GameObject playerPrefab;
     private CinemachineVirtualCamera cam;
     public TextMeshProUGUI ui;
+    private GameObject PausePanel;
 
-    // Start is called before the first frame update
+    public event Action Pause;
+
+    void Awake()
+    {
+        PausePanel = FindObjectOfType<MainMenu>().gameObject;
+        PausePanel.SetActive(true);
+    }
     void Start()
     {
+        
         cam = FindObjectOfType<CinemachineVirtualCamera>();
         positionTimerRemaining = positionTimerMax;
         gameTimeRemaining = gameTimeMax;
@@ -52,6 +60,12 @@ public class GameManagement : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            
+            Pause?.Invoke();
+        }
+
         if (gameTimeRemaining>=0)
         {
             gameTimeRemaining -= Time.deltaTime;
@@ -78,6 +92,8 @@ public class GameManagement : MonoBehaviour
 
         
     }
+
+    
 
     private void WinCheck()
     {

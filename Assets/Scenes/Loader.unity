@@ -153,6 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   n_once: 0
+  MainMenu: {fileID: 0}
+  sc: {fileID: 11400000, guid: b5485830ad6a1984eb2fe1c7064115a1, type: 2}
 --- !u!4 &1910866028
 Transform:
   m_ObjectHideFlags: 0

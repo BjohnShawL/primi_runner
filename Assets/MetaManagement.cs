@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,6 +11,7 @@ public class MetaManagement : MonoBehaviour
     public int n_once;
     [SerializeField]private MainMenu MainMenu;
     [CanBeNull] private GameManagement gameManagement;
+    public SceneIndex sc;
 
     void Awake()
     {
@@ -55,6 +57,15 @@ public class MetaManagement : MonoBehaviour
     private void SceneLoad(int index)
     {
         SceneManager.LoadScene(index);
+        //MenuSetUp();
+    }
+
+    private void SceneLoad(string sceneName)
+    {
+        var sceneDict = sc.Scenes.ToDictionary(x => x.Name, x=>x.Index);
+        var sceneToLoad = sceneDict[sceneName];
+        SceneManager.LoadScene(sceneToLoad);
+
         //MenuSetUp();
     }
 

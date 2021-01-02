@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private int MenuIndex = 1;
-    [SerializeField] private int PlayIndex = 2;
-
     private MetaManagement meta;
-
-    public event Action<int> Loader;
+    public event Action<string> Loader;
     public event Action Quiter;
 
     // Start is called before the first frame update
@@ -19,7 +16,9 @@ public class MainMenu : MonoBehaviour
     {
         meta = FindObjectOfType<MetaManagement>();
         meta.MenuReady();
-        if (SceneManager.GetActiveScene().buildIndex == MenuIndex)
+        var sceneDict = meta.sc
+                .Scenes.ToDictionary(x => x.Name, x => x.Index);
+        if (SceneManager.GetActiveScene().buildIndex == sceneDict["Menu"])
         {
             Time.timeScale = 1;
         }
@@ -27,7 +26,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        Loader?.Invoke(PlayIndex);
+        Loader?.Invoke("Play");
     }
 
     public void QuitGame()
@@ -37,6 +36,6 @@ public class MainMenu : MonoBehaviour
 
     public void BackToMenu()
     {
-        Loader?.Invoke(MenuIndex);
+        Loader?.Invoke("Menu");
     }
 }

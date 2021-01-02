@@ -23,6 +23,7 @@ public class GameManagement : MonoBehaviour
     private GameObject PausePanel;
 
     public event Action Pause;
+    public event Action Win; 
 
     void Awake()
     {
@@ -97,11 +98,13 @@ public class GameManagement : MonoBehaviour
 
     private void WinCheck()
     {
-        if (player!=null)
+        if (player!=null && player.hasWon == false)
         {
             if (player.gameObject.transform.position.y >= win_Y && player.isGrounded)
             {
-                Debug.Log("You Win!");
+                player.hasWon = true;
+                Win?.Invoke();
+                Pause?.Invoke();
             }
         }
         

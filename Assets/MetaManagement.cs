@@ -45,12 +45,14 @@ public class MetaManagement : MonoBehaviour
         gameManagement = FindObjectOfType<GameManagement>();
         Debug.Log("Working");
         MainMenu.Loader += SceneLoad;
+        MainMenu.LoadByInt += SceneLoad;
         MainMenu.Quiter += GameQuit;
         if (gameManagement)
         {
             Debug.Log("Pause should be working");
             MainMenu.gameObject.SetActive(false);
             gameManagement.Pause += GamePause;
+            gameManagement.Win += LevelWin;
         }
     }
 
@@ -85,5 +87,10 @@ public class MetaManagement : MonoBehaviour
     public void MenuReady()
     {
         MenuSetUp();
+    }
+
+    public void LevelWin()
+    {
+        MainMenu.WinSwitch();
     }
 }

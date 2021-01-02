@@ -34,8 +34,8 @@ public class PlayerController : MonoBehaviour
     public event Action<PlayerController> PlayerDeath;
     public event Action<PlayerController, float> PlayerTP; 
     public event Action<Vector2> PlayerSpawn;
-    public event Action<int> AddTime; 
-    
+    public event Action<int> AddTime;
+    public bool hasWon = false;
 
 
     // Start is called before the first frame update

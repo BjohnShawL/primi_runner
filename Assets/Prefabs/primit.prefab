@@ -334,9 +334,9 @@ MonoBehaviour:
   moveSpeed: 20
   speedBoostMultiplier: 1.6
   SloMoMultiplier: 0.5
-  deathDelay: 100
-  fallMultiplier: 3.13
-  shortJumpMultiplier: 0
+  deathDelay: 600
+  fallMultiplier: 3.64
+  shortJumpMultiplier: 2.28
   jumpForce: 30
   isGrounded: 0
   GroundCheckTransform: {fileID: 281409244}

@@ -1962,7 +1962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4134383351868202590, guid: f74ee121ff1340e4593996a3e6286248, type: 3}
       propertyPath: gameTimeMax
-      value: 60
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4134383351868202591, guid: f74ee121ff1340e4593996a3e6286248, type: 3}
       propertyPath: m_Name

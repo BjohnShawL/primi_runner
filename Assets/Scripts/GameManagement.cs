@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Cinemachine;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class GameManagement : MonoBehaviour
 {
@@ -23,7 +24,8 @@ public class GameManagement : MonoBehaviour
     private GameObject PausePanel;
 
     public event Action Pause;
-    public event Action Win; 
+    public event Action Win;
+    public event Action Lose;
 
     void Awake()
     {
@@ -62,6 +64,12 @@ public class GameManagement : MonoBehaviour
             }
         }
 
+        if (GameObject.FindObjectsOfType<PlayerController>().Length > 1)
+        {
+            var x = GameObject.FindObjectsOfType<PlayerController>();
+            GameObject.Destroy(x[0]);
+        }
+
         if (Input.GetKeyDown(KeyCode.LeftAlt))
         {
             
@@ -77,7 +85,7 @@ public class GameManagement : MonoBehaviour
         }
         else
         {
-            Debug.Log("Game over man, game over");
+            Lose.Invoke();
         }
 
         // if (player == null)

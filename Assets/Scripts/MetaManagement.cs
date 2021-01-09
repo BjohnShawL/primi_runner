@@ -53,7 +53,13 @@ public class MetaManagement : MonoBehaviour
             MainMenu.gameObject.SetActive(false);
             gameManagement.Pause += GamePause;
             gameManagement.Win += LevelWin;
+            gameManagement.Lose += LoseGame;
         }
+    }
+
+    private void LoseGame()
+    {
+        MainMenu.LoseGame();
     }
 
     private void SceneLoad(int index)

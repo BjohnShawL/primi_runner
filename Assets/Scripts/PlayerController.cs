@@ -41,6 +41,10 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (GetComponent<PlayerController>() != this)
+        {
+            Destroy(this);
+        }
         
 
         rb = GetComponent<Rigidbody2D>();
@@ -165,8 +169,8 @@ public class PlayerController : MonoBehaviour
             jumpForce *= .7f;
             PlayerJump();
             await Task.Run(()=> jumpForce = baseJump);
-            
-            await Task.Delay(500);
+            var death = Mathf.FloorToInt(deathDelay);
+            await Task.Delay(death);
             PlayerDeath?.Invoke(this);
         }
     }

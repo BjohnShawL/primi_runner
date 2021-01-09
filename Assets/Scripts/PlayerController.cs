@@ -41,10 +41,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GetComponent<PlayerController>() != this)
-        {
-            Destroy(this);
-        }
+        
         
 
         rb = GetComponent<Rigidbody2D>();
@@ -74,6 +71,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        BetterJump();
+
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
 
@@ -206,6 +205,12 @@ public class PlayerController : MonoBehaviour
        
     }
 
-     
+    void BetterJump()
+    {
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier -1) * Time.deltaTime;
+        }
+    } 
 
 }

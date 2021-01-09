@@ -76,7 +76,7 @@ public class GameManagement : MonoBehaviour
             Pause?.Invoke();
         }
 
-        if (gameTimeRemaining>=0)
+        if (gameTimeRemaining>0)
         {
             gameTimeRemaining -= Time.deltaTime;
             var gtrInt = Mathf.FloorToInt(gameTimeRemaining);

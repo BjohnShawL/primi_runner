@@ -67,7 +67,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Onwards, though it blinds
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 08b4530f745db6d4ba96704f6e7fc3f5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f122274de79465c449bb3a5e43adae92, type: 2}
   m_sharedMaterial: {fileID: 7738761465747246765, guid: 08b4530f745db6d4ba96704f6e7fc3f5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &6631550827424061966
@@ -394,7 +394,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Inch by torturous inch, you make your way towards the light...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 08b4530f745db6d4ba96704f6e7fc3f5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f122274de79465c449bb3a5e43adae92, type: 2}
   m_sharedMaterial: {fileID: 7738761465747246765, guid: 08b4530f745db6d4ba96704f6e7fc3f5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -458,7 +458,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &6631550827892636506
@@ -660,8 +660,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Quit to Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 08b4530f745db6d4ba96704f6e7fc3f5, type: 2}
-  m_sharedMaterial: {fileID: 7738761465747246765, guid: 08b4530f745db6d4ba96704f6e7fc3f5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f122274de79465c449bb3a5e43adae92, type: 2}
+  m_sharedMaterial: {fileID: -5642201772429499144, guid: f122274de79465c449bb3a5e43adae92, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -685,7 +685,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.4
+  m_fontSize: 41.65
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -999,8 +999,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: remaining time
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f122274de79465c449bb3a5e43adae92, type: 2}
+  m_sharedMaterial: {fileID: -5642201772429499144, guid: f122274de79465c449bb3a5e43adae92, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

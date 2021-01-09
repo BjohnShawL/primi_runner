@@ -335,7 +335,7 @@ MonoBehaviour:
   speedBoostMultiplier: 1.6
   SloMoMultiplier: 0.5
   deathDelay: 600
-  fallMultiplier: 3.64
+  fallMultiplier: 5
   shortJumpMultiplier: 2.28
   jumpForce: 30
   isGrounded: 0

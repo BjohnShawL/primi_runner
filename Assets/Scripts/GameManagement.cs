@@ -38,7 +38,8 @@ public class GameManagement : MonoBehaviour
         gameTimeRemaining = gameTimeMax;
         GetPlayer();
         spawnPos = player.gameObject.transform.position;
-        
+        Time.timeScale = 1;
+
     }
 
     // Update is called once per frame

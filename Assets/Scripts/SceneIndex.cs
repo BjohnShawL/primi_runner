@@ -8,7 +8,7 @@ public class SceneIndex : ScriptableObject
 {
     public List<(string Name, int Index)> Scenes = new List<(string, int)>
     {
-        ("Menu",1),("Play",2),("Win",3),("Lose",4)
+        ("Menu",1),("Play",2),("Win",4),("Lose",5)
 
 
     };

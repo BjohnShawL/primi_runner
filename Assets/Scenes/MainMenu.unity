@@ -1616,9 +1616,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d34df8b5042178741aa650e836b0e2d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPauseMenu: 1
-  WinPanel: {fileID: 0}
-  QuitPanel: {fileID: 0}
+  MenuIndex: 1
+  PlayIndex: 2
 --- !u!1 &1824165046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1706,7 +1705,6 @@ GameObject:
   - component: {fileID: 1935221561}
   - component: {fileID: 1935221560}
   - component: {fileID: 1935221563}
-  - component: {fileID: 1935221564}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1721,7 +1719,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1935221559}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &1935221561
 Camera:
   m_ObjectHideFlags: 0
@@ -1810,17 +1808,3 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!114 &1935221564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1935221559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
-  ListenerNumber: -1

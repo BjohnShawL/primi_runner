@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     public event Action<PlayerController, float> PlayerTP; 
     public event Action<Vector2> PlayerSpawn;
     public event Action<int> AddTime;
+    public event Action<PlayerController> Jump;
+    public event Action<PlayerController> Bounce;
     public bool hasWon = false;
 
 
@@ -77,7 +79,7 @@ public class PlayerController : MonoBehaviour
         {
 
             PlayerJump();
-
+            Jump?.Invoke(this);
 
         }
         //  && Input.GetKeyDown(KeyCode.DownArrow) - this turns us manual
@@ -119,6 +121,8 @@ public class PlayerController : MonoBehaviour
             var baseJump = jumpForce;
             jumpForce *= 2;
             PlayerJump();
+            Jump?.Invoke(this);
+            Bounce?.Invoke(this);
             jumpForce = baseJump;
         }
         else

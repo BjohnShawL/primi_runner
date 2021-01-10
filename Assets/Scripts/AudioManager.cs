@@ -18,7 +18,7 @@ public class AudioManager : MonoBehaviour
         sceneDict = si
             .Scenes.ToDictionary(x => x.Name, x => x.Index);
 
-        
+
     }
 
     // Update is called once per frame
@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour
             {
                 PlayerSetup();
             }
-            
+
         }
     }
 
@@ -49,7 +49,7 @@ public class AudioManager : MonoBehaviour
     private void Player_Jump(PlayerController obj)
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/Jump");
-       
+
     }
 
 
